@@ -58,7 +58,7 @@ class RPGFreeDocCommentBundler:
         self.line_number = 0
         self.rpg_free_doc_comment_collection = RPGFreeDocCommentCollection()
 
-    def bundle(self):
+    def bundle(self) -> RPGFreeDocCommentCollection:
         a_line = self.fh.readline()
         while a_line:
             if DOCCOMMENT.search(a_line):
@@ -70,6 +70,15 @@ class RPGFreeDocCommentBundler:
                 self.line_number = result[1]
             a_line = self.fh.readline()
             self.line_number += 1
+        return self.rpg_free_doc_comment_collection
+
+    @staticmethod
+    def bundleFile(filepath) -> RPGFreeDocCommentCollection:
+        fh = open(filepath, "r")
+        rpg_free_doc_comment_bundler = RPGFreeDocCommentBundler(fh)
+        one_bundle = rpg_free_doc_comment_bundler.bundle()
+        fh.close()
+        return one_bundle
 
 
 if __name__ == "__main__":
