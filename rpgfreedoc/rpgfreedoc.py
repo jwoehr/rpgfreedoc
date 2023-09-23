@@ -73,7 +73,7 @@ class RPGFreeDocCommentBundler:
         return self.rpg_free_doc_comment_collection
 
     @staticmethod
-    def bundleFile(filepath) -> RPGFreeDocCommentCollection:
+    def bundle_file(filepath) -> RPGFreeDocCommentCollection:
         fh = open(filepath, "r")
         rpg_free_doc_comment_bundler = RPGFreeDocCommentBundler(fh)
         one_bundle = rpg_free_doc_comment_bundler.bundle()
